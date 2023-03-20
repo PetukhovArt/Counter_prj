@@ -21,12 +21,12 @@ export const Counter: React.FC<CounterPropsType> = (props) => {
     }`
 
     const displayError = maxValue === startValue || startValue < 0 || maxValue < startValue
-    const displayEnterValues = maxValue !== startValue && startValue > 0 && maxValue > startValue
+    const displayEnterValues = maxValue !== startValue && startValue >= 0 && maxValue > startValue
 
     return (
         <div className={s.wrapper}>
             <div className={s.valuesWrapper}>
-                {editMode && displayEnterValues?
+                {editMode && displayEnterValues ?
                     <div className={s.pressSet}>Enter values and press 'Set'</div>
                     : displayError ?
                         <div className={s.error}>Incorrect values!</div>
@@ -34,18 +34,24 @@ export const Counter: React.FC<CounterPropsType> = (props) => {
                 }
             </div>
 
-            <SuperButton name="incr"
-                         callBack={() => counter('incr')} //вызов коллбэка из родителя и передаем имя кнопки
-                         callBackDisable={() => disableButton('incr')}
-            ></SuperButton>
-            <SuperButton name="decr"
-                         callBack={() => counter('decr')}
-                         callBackDisable={() => disableButton('decr')}
-            ></SuperButton>
-            <SuperButton name="Reset"
-                         callBack={() => counter('Reset')}
-                         callBackDisable={() => disableButton('Reset')}
-            ></SuperButton>
+            <div className={s.buttonWrapper}>
+                <SuperButton name="incr"
+                             callBack={() => counter('incr')} //вызов коллбэка из родителя и передаем имя кнопки
+                             callBackDisable={() => disableButton('incr')}
+                ></SuperButton>
+                <SuperButton name="decr"
+                             callBack={() => counter('decr')}
+                             callBackDisable={() => disableButton('decr')}
+                ></SuperButton>
+                <SuperButton name="Reset"
+                             callBack={() => counter('Reset')}
+                             callBackDisable={() => disableButton('Reset')}
+                ></SuperButton>
+                <SuperButton name="Menu"
+                             callBack={() => counter('Menu')}
+                             callBackDisable={() => disableButton('Menu')}
+                ></SuperButton>
+            </div>
         </div>
     )
 }

@@ -48,7 +48,7 @@ export const SetCounter: React.FC<CounterPropsType> = (props) => {
         <div className={s.wrapper}>
             <div className={s.inputWrapper}>
                 <div className={s.setItemWrapper}>
-                    <span className={s.setItemTitle}>max:</span>
+                    <span className={s.setItemTitle}>Max:</span>
                     <SuperInput
                         error={error}
                         value={maxValue}
@@ -60,7 +60,7 @@ export const SetCounter: React.FC<CounterPropsType> = (props) => {
                     />
                 </div>
                 <div className={s.setItemWrapper}>
-                    <span className={s.setItemTitle}>min:</span>
+                    <span className={s.setItemTitle}>Min:</span>
                     <SuperInput
                         error={error}
                         value={startValue}

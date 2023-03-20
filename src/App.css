@@ -1,9 +1,18 @@
-.App {
-  text-align: center;
-  padding-top: 100px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+.appWrapperContent {
+
+}
+
+.appWrapper {
+    display: grid;
+    width: 1200px;
+    margin: 0 auto;
+    grid-template-areas:
+        "nav content"
+        "nav content"
+        "nav content";
+    grid-template-columns: 1fr 11fr;
+    gap: 5px;
+    padding: 10px;
 }
 
 
