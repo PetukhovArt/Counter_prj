@@ -2,17 +2,17 @@ import React, {ButtonHTMLAttributes, ChangeEvent, useState} from 'react';
 import s from './Counter.module.css'
 import {SuperButton} from '../SuperButton/SuperButton';
 import {SuperInput} from '../SuperInput/SuperInput';
-
+import {useSelector} from 'react-redux';
+import {AppRootStateType} from '../../redux/store';
+import {StateType} from '../../AppWithReactRedux';
 
 type CounterPropsType = {
     error: boolean
     maxValue: number
     startValue: number
-    count: number
-    setCounter: (name: string) => void
+    setValueToCounter: (name: string) => void
     disableButton: (name: string) => boolean
     disable: boolean
-    setDisable: (value: boolean) => void
     onChangeMaxHandler: (newValue: number) => void
     onChangeMinHandler: (newValue: number) => void
     editModeActive:(newValue: number) => void
@@ -22,11 +22,9 @@ export const SetCounter: React.FC<CounterPropsType> = (props) => {
     const {
         error,
         disable,
-        setDisable,
-        count,
         maxValue,
         startValue,
-        setCounter,
+        setValueToCounter,
         onChangeMaxHandler,
         onChangeMinHandler,
         disableButton,
@@ -41,7 +39,7 @@ export const SetCounter: React.FC<CounterPropsType> = (props) => {
         onChangeMinHandler(newValue)
     }
     const onClickHandler = () => {
-        setCounter('Set')
+        setValueToCounter('Set')
     }
 
     return (

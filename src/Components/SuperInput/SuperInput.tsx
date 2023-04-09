@@ -14,7 +14,6 @@ type SuperInputPropsType = {
 
 export const SuperInput: React.FC<SuperInputPropsType> = (props) => {
     const {editModeActive,error, name, value, placeholder, type, inputOnChangeHandler,...otherProps} = props
-
     const onChangeCalls = (e: ChangeEvent<HTMLInputElement>) => {
         inputOnChangeHandler(e.currentTarget.valueAsNumber)
         editModeActive(e.currentTarget.valueAsNumber)
@@ -25,7 +24,7 @@ export const SuperInput: React.FC<SuperInputPropsType> = (props) => {
                placeholder={placeholder}
                type={type}
                value={value}
-               onChange={onChangeCalls}
+               onChange={(e)=>onChangeCalls(e)}
         />
     )
 }

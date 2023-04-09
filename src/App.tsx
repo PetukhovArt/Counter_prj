@@ -40,6 +40,7 @@ function App() {
         localStorage.setItem('startValue', JSON.stringify(startValue))
     }, [count, maxValue, startValue])
     //when dep-s differ , setItems to LS
+
     useEffect(() => { //disable Set Button properties (setCounter component)
         if (maxValue === startValue // incorrect values
             || startValue < 0 // incorrect values
@@ -52,38 +53,11 @@ function App() {
     }, [maxValue, startValue, count]);
 
     function disableButton(name: string) {
-        // if (count === maxValue && name === 'incr' || editMode && name === 'incr') return true
         if (name === 'incr' && count === maxValue || editMode) return true
-        // if maxVal or editMode and no Set => incr blocked
         if (count === startValue && name === 'decr') return true;
         if (maxValue === startValue || startValue < 0 || maxValue < startValue) return true;
         return count === startValue && name === 'Reset';
     }
-
-    function counter(name: string) {
-        if (name === 'incr' && count < maxValue) setCount(count + 1)
-        if (name === 'decr' && count > startValue) setCount(count - 1)
-        if (name === 'Reset') setCount(startValue)
-    }
-
-    function setCounter(name: string) { //onClick Set Button
-        if (name === 'Set') {
-            setCount(startValue)
-            setEditeMode(false) //after onClick => disable Edite mode
-            setDisable(true) //after onClick => disable Set
-        }
-    }
-
-    const error = maxValue === startValue || startValue < 0 || maxValue < startValue
-
-    function onChangeMaxHandler(newValue: number) {
-        setMaxValue(newValue)
-    }
-
-    function onChangeMinHandler(newValue: number) {
-        setStartValue(newValue)
-    }
-
     function editModeActive(newValue: number) { // if onChange from Inputs (setCounter)
         if (newValue) {
             setEditeMode(!!newValue)
@@ -91,43 +65,64 @@ function App() {
         }
     }
 
+    function counter(name: string) {
+        if (name === 'incr' && count < maxValue) setCount(count + 1)
+        if (name === 'decr' && count > startValue) setCount(count - 1)
+        if (name === 'Reset') setCount(startValue)
+    }
+    function setCounter(name: string) { //onClick Set Button
+        if (name === 'Set') {
+            setCount(startValue)
+            setEditeMode(false) //after onClick => disable Edite mode
+            setDisable(true) //after onClick => disable Set
+        }
+    }
+    const error = maxValue === startValue || startValue < 0 || maxValue < startValue
+    function onChangeMaxHandler(newValue: number) {
+        setMaxValue(newValue)
+    }
+    function onChangeMinHandler(newValue: number) {
+        setStartValue(newValue)
+    }
+
+
     return (
         <BrowserRouter>
-            <div className="appWrapper">
-                <Navbar/>
-                <div className="appWrapperContent">
-                    <Routes>
-                        <Route path="/counter*"
-                               element={
-                                   <Counter
-                                       count={count}
-                                       counter={counter}
-                                       disableButton={disableButton}
-                                       maxValue={maxValue}
-                                       startValue={startValue}
-                                       editMode={editMode}/>}
-                        />
-                        <Route path="/setcounter/*"
-                               element={
-                                   <SetCounter
-                                       error={error}
-                                       maxValue={maxValue}
-                                       startValue={startValue}
-                                       count={count}
-                                       setCounter={setCounter}
-                                       disableButton={disableButton}
-                                       onChangeMaxHandler={onChangeMaxHandler}
-                                       onChangeMinHandler={onChangeMinHandler}
-                                       disable={disable}
-                                       setDisable={setDisable}
-                                       editModeActive={editModeActive}
-                                   />}
-                        />
-                    </Routes>
-                </div>
-            </div>
+            {/*<div className="appWrapper">*/}
+            {/*    <Navbar/>*/}
+            {/*    <div className="appWrapperContent">*/}
+            {/*        <Routes>*/}
+            {/*            <Route path="/counter/*"*/}
+            {/*                   element={*/}
+            {/*                       <Counter*/}
+            {/*                           count={count}*/}
+            {/*                           counter={counter}*/}
+            {/*                           disableButton={disableButton}*/}
+            {/*                           maxValue={maxValue}*/}
+            {/*                           startValue={startValue}*/}
+            {/*                           editMode={editMode}/>}*/}
+            {/*            />*/}
+            {/*            <Route path="/setcounter/*"*/}
+            {/*                   element={*/}
+            {/*                       <SetCounter*/}
+            {/*                           error={error}*/}
+            {/*                           maxValue={maxValue}*/}
+            {/*                           startValue={startValue}*/}
+            {/*                           count={count}*/}
+            {/*                           setCounter={setCounter}*/}
+            {/*                           disableButton={disableButton}*/}
+            {/*                           onChangeMaxHandler={onChangeMaxHandler}*/}
+            {/*                           onChangeMinHandler={onChangeMinHandler}*/}
+            {/*                           disable={disable}*/}
+            {/*                           setDisable={setDisable}*/}
+            {/*                           editModeActive={editModeActive}*/}
+            {/*                       />}*/}
+            {/*            />*/}
+            {/*        </Routes>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
         </BrowserRouter>
     );
 }
 
-export default App;
+// export default App;

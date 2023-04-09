@@ -1,8 +1,6 @@
-import React, {ButtonHTMLAttributes, useState} from 'react';
+import React from 'react';
 import s from './Counter.module.css'
 import {SuperButton} from '../SuperButton/SuperButton';
-import {log} from 'util';
-
 
 type CounterPropsType = {
     count: number
@@ -16,12 +14,9 @@ type CounterPropsType = {
 export const Counter: React.FC<CounterPropsType> = (props) => {
     const {editMode, maxValue, startValue, count, counter, disableButton, ...otherProps} = props
 
-    const countClassName = ` ${s.countDefault} 
-    ${count === maxValue || count === startValue ? s.countError : ''} 
-    }`
-
-    const displayError = maxValue === startValue || startValue < 0 || maxValue < startValue
-    const displayEnterValues = maxValue !== startValue && startValue >= 0 && maxValue > startValue
+    const countClassName = ` ${s.countDefault} ${count === maxValue || count === startValue ? s.countError : ''} `
+    const displayError = (maxValue === startValue || startValue < 0 || maxValue < startValue)
+    const displayEnterValues = (maxValue !== startValue && startValue >= 0 && maxValue > startValue)
 
     return (
         <div className={s.wrapper}>
@@ -47,10 +42,11 @@ export const Counter: React.FC<CounterPropsType> = (props) => {
                              callBack={() => counter('Reset')}
                              callBackDisable={() => disableButton('Reset')}
                 ></SuperButton>
-                <SuperButton name="Menu"
-                             callBack={() => counter('Menu')}
-                             callBackDisable={() => disableButton('Menu')}
-                ></SuperButton>
+
+                {/*<SuperButton name="Menu"*/}
+                {/*             callBack={() => counter('Menu')}*/}
+                {/*             callBackDisable={() => disableButton('Menu')}*/}
+                {/*></SuperButton>*/}
             </div>
         </div>
     )
